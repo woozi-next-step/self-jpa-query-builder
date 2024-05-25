@@ -6,22 +6,24 @@ public class EntityColumn {
 
     private final String name;
     private final EntityColumnType type;
-
-    public EntityColumn(final String name, final String type) {
-        this.name = name;
-        this.type = EntityColumnType.of(type);
-    }
+    private final EntityColumnOption option;
 
     public EntityColumn(final Field field) {
-        this(field.getName(), field.getType().getTypeName());
+        this(field.getName(), field.getType().getTypeName(), field.getAnnotation(Column.class));
+    }
+
+    public EntityColumn(final String name, final String type, final Column column) {
+        this.name = name;
+        this.type = EntityColumnType.of(type);
+        this.option = EntityColumnOption.of(column);
     }
 
     public String getName() {
-        return name;
+        return option.getName(name);
     }
 
-    public String getType() {
-        return type.getSqlType();
+    public String getSpec() {
+        return type.getSqlType().concat(option.spec());
     }
 
     public boolean hasPrimaryKey() {

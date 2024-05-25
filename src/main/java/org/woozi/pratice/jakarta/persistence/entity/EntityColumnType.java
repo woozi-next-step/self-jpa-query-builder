@@ -3,9 +3,9 @@ package org.woozi.pratice.jakarta.persistence.entity;
 import java.util.Arrays;
 
 public enum EntityColumnType {
-    BIGINT("java.lang.Long", "bigint"),
-    INT("java.lang.Integer", "int"),
-    VARCHAR("java.lang.String", "varchar(255)");
+    BIGINT("java.lang.Long", "BIGINT"),
+    INT("java.lang.Integer", "INT"),
+    VARCHAR("java.lang.String", "VARCHAR(255)");
 
     private final String javaType;
     private final String sqlType;

@@ -1,5 +1,6 @@
 package org.woozi.pratice.entity;
 
+import jakarta.persistence.Column;
 import org.woozi.pratice.jakarta.persistence.entity.Entity;
 import org.woozi.pratice.jakarta.persistence.entity.GeneratedValue;
 import org.woozi.pratice.jakarta.persistence.entity.GenerationType;
@@ -14,9 +15,15 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nick_name")
     private String name;
 
+    @Column(name = "old")
     private Integer age;
+
+    @Column(nullable = false)
+    private String email;
+
 
     public Person() {
     }

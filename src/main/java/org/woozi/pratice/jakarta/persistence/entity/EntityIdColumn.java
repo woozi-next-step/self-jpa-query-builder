@@ -4,12 +4,12 @@ import java.lang.reflect.Field;
 
 public class EntityIdColumn extends EntityColumn {
 
-    public EntityIdColumn(final String name, final String type) {
-        super(name, type);
+    public EntityIdColumn(final String name, final String type, final Column column) {
+        super(name, type, column);
     }
 
     public EntityIdColumn(final Field field) {
-        this(field.getName(), field.getType().getTypeName());
+        this(field.getName(), field.getType().getTypeName(), field.getAnnotation(Column.class));
     }
 
     public boolean hasPrimaryKey() {

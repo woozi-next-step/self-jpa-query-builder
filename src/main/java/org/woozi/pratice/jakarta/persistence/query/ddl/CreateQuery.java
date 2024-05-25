@@ -17,7 +17,7 @@ public class CreateQuery implements DDL {
 
     private String columnSpec(final EntityClass entityClass) {
         return entityClass.columns()
-                .map(column -> String.format(TABLE_COLUMN_SPEC, column.getName(), column.getType()))
+                .map(column -> String.format(TABLE_COLUMN_SPEC, column.getName(), column.getSpec()))
                 .collect(Collectors.joining(SPEC_DELIMITER))
                 .concat(SPEC_DELIMITER)
                 .concat(primaryKeySpec(entityClass));
