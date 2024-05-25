@@ -1,7 +1,9 @@
 package org.woozi.pratice.entity;
 
-import org.woozi.pratice.jakarta.persistence.Entity;
-import org.woozi.pratice.jakarta.persistence.Id;
+import org.woozi.pratice.jakarta.persistence.entity.Entity;
+import org.woozi.pratice.jakarta.persistence.entity.GeneratedValue;
+import org.woozi.pratice.jakarta.persistence.entity.GenerationType;
+import org.woozi.pratice.jakarta.persistence.entity.Id;
 
 import java.util.Objects;
 
@@ -9,6 +11,7 @@ import java.util.Objects;
 public class Person {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
