@@ -1,33 +1,25 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
-import java.util.Arrays;
+public class EntityColumnType {
+    private final Class<?> javaType;
 
-public enum EntityColumnType {
-    BIGINT("java.lang.Long", "BIGINT"),
-    INT("java.lang.Integer", "INT"),
-    VARCHAR("java.lang.String", "VARCHAR(255)");
-
-    private final String javaType;
-    private final String sqlType;
-
-    EntityColumnType(final String javaType, final String sqlType) {
+    EntityColumnType(final Class<?> javaType) {
         this.javaType = javaType;
-        this.sqlType = sqlType;
     }
 
-    public static EntityColumnType of(final String type) {
-        return Arrays.stream(values())
-                .filter(it -> it.javaType.equals(type))
-                .findFirst()
-                .orElseThrow(RuntimeException::new);
-    }
-
-    public String getJavaType() {
+    public Class<?> javaType() {
         return javaType;
     }
 
-    public String getSqlType() {
-        return sqlType;
+    public boolean isInteger() {
+        return javaType.equals(Integer.class);
+    }
+
+    public boolean isLong() {
+        return javaType.equals(Long.class);
+    }
+
+    public boolean isString() {
+        return javaType.equals(String.class);
     }
 }
-

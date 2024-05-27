@@ -7,13 +7,13 @@ import java.util.stream.Stream;
 
 public class EntityColumns {
 
-    private final List<EntityColumn> entityColumns;
+    private final List<EntityColumn> entityColumnFields;
 
-    public EntityColumns(final List<EntityColumn> entityColumns) {
-        if (entityColumns.stream().noneMatch(EntityColumn::hasPrimaryKey)) {
+    public EntityColumns(final List<EntityColumn> entityColumnFields) {
+        if (entityColumnFields.stream().noneMatch(EntityColumn::hasPrimaryKey)) {
             throw new RuntimeException("Id 어노테이션이 선언되지 않은 필드가 존재합니다.");
         }
-        this.entityColumns = entityColumns;
+        this.entityColumnFields = entityColumnFields;
     }
 
     public EntityColumns(final Class<?> clazz) {
@@ -23,12 +23,12 @@ public class EntityColumns {
     }
 
     public EntityColumn primaryKey() {
-        return entityColumns.stream().filter(EntityColumn::hasPrimaryKey)
+        return entityColumnFields.stream().filter(EntityColumn::hasPrimaryKey)
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Id 어노테이션이 선언되지 않은 필드가 존재합니다."));
     }
 
     public <R> Stream<R> map(Function<? super EntityColumn, ? extends R> mapper) {
-        return entityColumns.stream().map(mapper);
+        return entityColumnFields.stream().map(mapper);
     }
 }

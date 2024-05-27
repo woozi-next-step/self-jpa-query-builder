@@ -15,11 +15,15 @@ public enum QueryFactory {
         this.query = query;
     }
 
-    public static Query query(final String queryType) {
+    public static Query of(final String queryType) {
         return Arrays.stream(values())
                 .filter(it -> it.type.equals(queryType))
                 .map(it -> it.query)
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
+    }
+
+    public String type() {
+        return type;
     }
 }

@@ -2,38 +2,21 @@ package org.woozi.pratice.jakarta.persistence.entity;
 
 import java.lang.reflect.Field;
 
-public class EntityColumn {
+public interface EntityColumn {
+    String name();
 
-    private final String name;
-    private final EntityColumnType type;
-    private final EntityColumnOption option;
+    EntityColumnType type();
 
-    public EntityColumn(final Field field) {
-        this(field.getName(), field.getType().getTypeName(), field.getAnnotation(Column.class));
-    }
+    EntityColumnOption option();
 
-    public EntityColumn(final String name, final String type, final Column column) {
-        this.name = name;
-        this.type = EntityColumnType.of(type);
-        this.option = EntityColumnOption.of(column);
-    }
-
-    public String getName() {
-        return option.getName(name);
-    }
-
-    public String getSpec() {
-        return type.getSqlType().concat(option.spec());
-    }
-
-    public boolean hasPrimaryKey() {
+    default boolean hasPrimaryKey() {
         return false;
     }
 
-    public static EntityColumn of(final Field field) {
+    static EntityColumn of(final Field field) {
         if (field.isAnnotationPresent(Id.class)) {
-            return new EntityIdColumn(field);
+            return new EntityColumnId(field);
         }
-        return new EntityColumn(field);
+        return new EntityColumnField(field);
     }
 }
