@@ -1,16 +1,10 @@
 package org.woozi.pratice.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import org.woozi.pratice.jakarta.persistence.entity.Entity;
-import org.woozi.pratice.jakarta.persistence.entity.GeneratedValue;
-import org.woozi.pratice.jakarta.persistence.entity.GenerationType;
-import org.woozi.pratice.jakarta.persistence.entity.Id;
+import org.woozi.pratice.jakarta.persistence.entity.*;
 
 import java.util.Objects;
 
-@Table(name = "users")
+@Table(name = "persons")
 @Entity
 public class Person {
 
@@ -49,6 +43,14 @@ public class Person {
 
     public Integer getAge() {
         return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getIndex() {
+        return index;
     }
 
     @Override

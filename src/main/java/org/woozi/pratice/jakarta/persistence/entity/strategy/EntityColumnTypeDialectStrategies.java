@@ -1,6 +1,6 @@
 package org.woozi.pratice.jakarta.persistence.entity.strategy;
 
-import org.woozi.pratice.jakarta.persistence.entity.EntityColumnType;
+import org.woozi.pratice.jakarta.persistence.entity.EntityColumn;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ public class EntityColumnTypeDialectStrategies {
             new EntityColumnTypeLongDialectStrategy()
     );
 
-    public static String execute(final EntityColumnType type) {
-        final EntityColumnTypeDialectStrategy entityColumnTypeDialectStrategy = find(type);
+    public static String execute(final EntityColumn entityColumn) {
+        final EntityColumnTypeDialectStrategy entityColumnTypeDialectStrategy = strategy(entityColumn);
         return entityColumnTypeDialectStrategy.query();
     }
 
-    public static EntityColumnTypeDialectStrategy find(final EntityColumnType entityColumnType) {
-        return strategies.stream().filter(strategy -> strategy.isJavaType(entityColumnType.javaType()))
+    public static EntityColumnTypeDialectStrategy strategy(final EntityColumn entityColumn) {
+        return strategies.stream().filter(strategy -> strategy.isAcceptable(entityColumn))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unsupported java type: " + entityColumnType.javaType()));
+                .orElseThrow(() -> new IllegalArgumentException("Unsupported java type"));
     }
 }

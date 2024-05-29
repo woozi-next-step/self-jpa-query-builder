@@ -15,13 +15,10 @@ public class CreateQuery implements DDL {
     private static final String SPEC_DELIMITER = ", ";
     private static final String DELIMITER = " ";
 
-    // 쿼리를 만들어줘
     public String execute(EntityClass entityClass) {
-        return String.format(CREATE_TABLE_QUERY, entityClass.tableName(), columns(entityClass));
+        return String.format(CREATE_TABLE_QUERY, entityClass.name().name(), columns(entityClass));
     }
 
-    // 컬럼 스펙을 만들어줘
-    // 컬럼명과 컬럼타입을 받아서 컬럼 스펙을 만들어줘
     private String columns(final EntityClass entityClass) {
         return entityClass.columns()
                 .map(CreateQuery::columnFiled)
@@ -36,7 +33,7 @@ public class CreateQuery implements DDL {
     }
 
     private static String dialect(final EntityColumn column) {
-        final String type = EntityColumnTypeDialectStrategies.execute(column.type());
+        final String type = EntityColumnTypeDialectStrategies.execute(column);
         return type.concat(DELIMITER).concat(EntityColumnOptionDialectStrategies.execute(column));
     }
 

@@ -18,6 +18,7 @@ public class EntityColumns {
 
     public EntityColumns(final Class<?> clazz) {
         this(Arrays.stream(clazz.getDeclaredFields())
+                .filter(it -> !it.isAnnotationPresent(Transient.class))
                 .map(EntityColumn::of)
                 .toList());
     }

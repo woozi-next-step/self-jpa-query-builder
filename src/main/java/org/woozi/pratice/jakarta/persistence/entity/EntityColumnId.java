@@ -20,13 +20,18 @@ public class EntityColumnId implements EntityColumn {
     }
 
     @Override
-    public EntityColumnType type() {
-        return entityColumnField.type();
+    public boolean isSameType(Class<?> clazz) {
+        return entityColumnField.isSameType(clazz);
     }
 
     @Override
-    public EntityColumnOption option() {
-        return entityColumnField.option();
+    public boolean isAutoIncrement() {
+        return entityColumnField.isAutoIncrement();
+    }
+
+    @Override
+    public boolean isNullable() {
+        return false;
     }
 
     @Override

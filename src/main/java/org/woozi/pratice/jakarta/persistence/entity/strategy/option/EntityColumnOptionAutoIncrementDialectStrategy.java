@@ -7,7 +7,7 @@ public class EntityColumnOptionAutoIncrementDialectStrategy implements EntityCol
 
     @Override
     public boolean isAcceptable(final EntityColumn entityColumn) {
-        return entityColumn.hasPrimaryKey() && entityColumn.option().isAutoIncrement();
+        return entityColumn.hasPrimaryKey() && entityColumn.isAutoIncrement();
     }
 
     @Override

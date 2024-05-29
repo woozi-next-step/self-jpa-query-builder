@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 public class EntityColumnOptionDialectStrategies {
     private static final List<EntityColumnOptionDialectStrategy> STRATEGIES = List.of(
+            new EntityColumnOptionNullableDialectStrategy(),
             new EntityColumnOptionNotNullableDialectStrategy(),
-            new EntityColumnOptionAutoIncrementDialectStrategy(),
-            new EntityColumnOptionNullableDialectStrategy()
+            new EntityColumnOptionAutoIncrementDialectStrategy()
     );
 
     public static String execute(final EntityColumn column) {

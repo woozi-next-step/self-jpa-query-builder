@@ -18,18 +18,27 @@ public class EntityColumnField implements EntityColumn {
         this.option = new EntityColumnOption(column, generatedValue);
     }
 
+    @Override
     public String name() {
         return name.getName(option);
     }
 
-    public EntityColumnType type() {
-        return type;
+    @Override
+    public boolean isSameType(final Class<?> javaType) {
+        return type.isSameType(javaType);
     }
 
-    public EntityColumnOption option() {
-        return option;
+    @Override
+    public boolean isAutoIncrement() {
+        return option.isAutoIncrement();
     }
 
+    @Override
+    public boolean isNullable() {
+        return option.isNullable();
+    }
+
+    @Override
     public boolean hasPrimaryKey() {
         return false;
     }

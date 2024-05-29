@@ -9,7 +9,7 @@ public class EntityColumnOption {
 
     private static boolean getNullable(final Column column) {
         if(Objects.isNull(column)) {
-            return false;
+            return true;
         }
         return column.nullable();
     }

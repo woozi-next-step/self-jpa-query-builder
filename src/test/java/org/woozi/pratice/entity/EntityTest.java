@@ -15,7 +15,7 @@ class EntityTest {
         final String actual = QueryBuilder.execute(Person.class, QueryFactory.CREATE.type());
 
         // then
-        final String expected = "CREATE TABLE `persons` (`id` BIGINT NOT NULL AUTO_INCREMENT, `name` VARCHAR(255) NOT NULL, `age` INT NOT NULL, `email` VARCHAR(255) NOT NULL, PRIMARY KEY(`id`));";
+        final String expected = "CREATE TABLE `persons` (`id` BIGINT NOT NULL AUTO_INCREMENT, `nick_name` VARCHAR(255) NULL, `old` INT NULL, `email` VARCHAR(255) NOT NULL, PRIMARY KEY(`id`));";
 
         assertThat(actual).isEqualTo(expected);
     }

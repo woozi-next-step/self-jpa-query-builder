@@ -5,9 +5,11 @@ import java.lang.reflect.Field;
 public interface EntityColumn {
     String name();
 
-    EntityColumnType type();
+    boolean isSameType(Class<?> javaType);
 
-    EntityColumnOption option();
+    boolean isAutoIncrement();
+
+    boolean isNullable();
 
     default boolean hasPrimaryKey() {
         return false;
@@ -19,4 +21,5 @@ public interface EntityColumn {
         }
         return new EntityColumnField(field);
     }
+
 }

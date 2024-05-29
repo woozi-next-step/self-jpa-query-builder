@@ -7,7 +7,7 @@ public class EntityColumnOptionNotNullableDialectStrategy implements EntityColum
 
     @Override
     public boolean isAcceptable(final EntityColumn entityColumn) {
-        return !entityColumn.option().isNullable();
+        return !entityColumn.isNullable();
     }
 
     @Override

@@ -8,6 +8,6 @@ public class EntityColumnName {
     }
 
     public String getName(final EntityColumnOption option) {
-        return name.isBlank() ? option.getName() : name;
+        return option.getName().isBlank() ? name : option.getName();
     }
 }
