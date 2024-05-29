@@ -1,6 +1,8 @@
 package org.woozi.pratice.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import org.woozi.pratice.jakarta.persistence.entity.Entity;
 import org.woozi.pratice.jakarta.persistence.entity.GeneratedValue;
 import org.woozi.pratice.jakarta.persistence.entity.GenerationType;
@@ -8,6 +10,7 @@ import org.woozi.pratice.jakarta.persistence.entity.Id;
 
 import java.util.Objects;
 
+@Table(name = "users")
 @Entity
 public class Person {
 
@@ -24,6 +27,8 @@ public class Person {
     @Column(nullable = false)
     private String email;
 
+    @Transient
+    private Integer index;
 
     public Person() {
     }
