@@ -1,11 +1,19 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
+import org.woozi.pratice.jakarta.persistence.entity.annotation.Column;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.GeneratedValue;
+
+import java.lang.reflect.Field;
 import java.util.Objects;
 
 public class EntityColumnOption {
     private final String name;
     private final boolean nullable;
     private final GenerationType generationType;
+
+    public EntityColumnOption(final Field field) {
+        this(field.getAnnotation(Column.class), field.getAnnotation(GeneratedValue.class));
+    }
 
     private static boolean getNullable(final Column column) {
         if(Objects.isNull(column)) {
@@ -38,8 +46,8 @@ public class EntityColumnOption {
         this.generationType = generationType;
     }
 
-    public String getName() {
-        return this.name;
+    public String getName(final EntityColumnName name) {
+        return this.name.isBlank() ? name.getName() : this.name;
     }
 
     public boolean isNullable() {

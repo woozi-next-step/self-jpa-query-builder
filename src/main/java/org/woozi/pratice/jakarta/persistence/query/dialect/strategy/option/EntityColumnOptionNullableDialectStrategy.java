@@ -1,6 +1,6 @@
-package org.woozi.pratice.jakarta.persistence.entity.strategy.option;
+package org.woozi.pratice.jakarta.persistence.query.dialect.strategy.option;
 
-import org.woozi.pratice.jakarta.persistence.entity.EntityColumn;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
 
 public class EntityColumnOptionNullableDialectStrategy implements EntityColumnOptionDialectStrategy {
     private static final String DIALECT = "NULL";

@@ -1,4 +1,7 @@
-package org.woozi.pratice.jakarta.persistence.entity;
+package org.woozi.pratice.jakarta.persistence.entity.annotation;
+
+import org.woozi.pratice.jakarta.persistence.entity.EntityColumnField;
+import org.woozi.pratice.jakarta.persistence.entity.EntityColumnId;
 
 import java.lang.reflect.Field;
 

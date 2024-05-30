@@ -1,6 +1,6 @@
-package org.woozi.pratice.jakarta.persistence.entity.strategy.option;
+package org.woozi.pratice.jakarta.persistence.query.dialect.strategy.option;
 
-import org.woozi.pratice.jakarta.persistence.entity.EntityColumn;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
 
 import java.util.List;
 import java.util.stream.Collectors;

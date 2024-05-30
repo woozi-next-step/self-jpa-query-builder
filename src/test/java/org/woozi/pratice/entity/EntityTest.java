@@ -1,6 +1,7 @@
 package org.woozi.pratice.entity;
 
 import org.junit.jupiter.api.Test;
+import org.woozi.pratice.jakarta.persistence.query.dialect.H2Dialect;
 import org.woozi.pratice.jakarta.persistence.query.QueryBuilder;
 import org.woozi.pratice.jakarta.persistence.query.QueryFactory;
 
@@ -12,7 +13,8 @@ class EntityTest {
     @Test
     void Entity_어노테이션_선언_클래스_create_쿼리를_생성한다() {
         // when
-        final String actual = QueryBuilder.execute(Person.class, QueryFactory.CREATE.type());
+        final QueryBuilder queryBuilder = new QueryBuilder(new H2Dialect());
+        final String actual = queryBuilder.execute(Person.class, QueryFactory.CREATE.type());
 
         // then
         final String expected = "CREATE TABLE `persons` (`id` BIGINT NOT NULL AUTO_INCREMENT, `nick_name` VARCHAR(255) NULL, `old` INT NULL, `email` VARCHAR(255) NOT NULL, PRIMARY KEY(`id`));";

@@ -1,5 +1,7 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
+
 import java.lang.reflect.Field;
 
 public class EntityColumnId implements EntityColumn {

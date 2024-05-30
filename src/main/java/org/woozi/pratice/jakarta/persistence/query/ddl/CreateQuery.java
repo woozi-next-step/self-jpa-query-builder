@@ -1,9 +1,8 @@
 package org.woozi.pratice.jakarta.persistence.query.ddl;
 
 import org.woozi.pratice.jakarta.persistence.entity.EntityClass;
-import org.woozi.pratice.jakarta.persistence.entity.EntityColumn;
-import org.woozi.pratice.jakarta.persistence.entity.strategy.EntityColumnTypeDialectStrategies;
-import org.woozi.pratice.jakarta.persistence.entity.strategy.option.EntityColumnOptionDialectStrategies;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
+import org.woozi.pratice.jakarta.persistence.query.dialect.Dialect;
 
 import java.util.stream.Collectors;
 
@@ -13,28 +12,22 @@ public class CreateQuery implements DDL {
     private static final String TABLE_COLUMN_SPEC = "`%s` %s";
     private static final String PRIMARY_KEY = "PRIMARY KEY(`%s`)";
     private static final String SPEC_DELIMITER = ", ";
-    private static final String DELIMITER = " ";
 
-    public String execute(EntityClass entityClass) {
-        return String.format(CREATE_TABLE_QUERY, entityClass.name().name(), columns(entityClass));
+    public String execute(final EntityClass entityClass, final Dialect dialect) {
+        return String.format(CREATE_TABLE_QUERY, entityClass.name().name(), columns(entityClass, dialect));
     }
 
-    private String columns(final EntityClass entityClass) {
+    private String columns(final EntityClass entityClass, final Dialect dialect) {
         return entityClass.columns()
-                .map(CreateQuery::columnFiled)
+                .map(it -> columnFiled(it, dialect))
                 .collect(Collectors.joining(SPEC_DELIMITER))
                 .concat(SPEC_DELIMITER)
                 .concat(primaryKey(entityClass));
     }
 
-    private static String columnFiled(final EntityColumn column) {
+    private static String columnFiled(final EntityColumn column, final Dialect dialect) {
         final String name = column.name();
-        return String.format(TABLE_COLUMN_SPEC, name, dialect(column));
-    }
-
-    private static String dialect(final EntityColumn column) {
-        final String type = EntityColumnTypeDialectStrategies.execute(column);
-        return type.concat(DELIMITER).concat(EntityColumnOptionDialectStrategies.execute(column));
+        return String.format(TABLE_COLUMN_SPEC, name, dialect.execute(column));
     }
 
     private String primaryKey(final EntityClass entityClass) {

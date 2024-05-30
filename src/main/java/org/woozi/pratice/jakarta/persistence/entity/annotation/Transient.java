@@ -1,4 +1,4 @@
-package org.woozi.pratice.jakarta.persistence.entity;
+package org.woozi.pratice.jakarta.persistence.entity.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

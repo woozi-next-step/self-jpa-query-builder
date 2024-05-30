@@ -1,5 +1,7 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
+
 import java.lang.reflect.Field;
 
 public class EntityColumnField implements EntityColumn {
@@ -9,18 +11,14 @@ public class EntityColumnField implements EntityColumn {
     private final EntityColumnOption option;
 
     public EntityColumnField(final Field field) {
-        this(field.getName(), field.getType(), field.getAnnotation(Column.class), field.getAnnotation(GeneratedValue.class));
-    }
-
-    public EntityColumnField(final String name, final Class<?> type, final Column column, final GeneratedValue generatedValue) {
-        this.name = new EntityColumnName(name);
-        this.type = new EntityColumnType(type);
-        this.option = new EntityColumnOption(column, generatedValue);
+        this.name = new EntityColumnName(field);
+        this.type = new EntityColumnType(field);
+        this.option = new EntityColumnOption(field);
     }
 
     @Override
     public String name() {
-        return name.getName(option);
+        return option.getName(name);
     }
 
     @Override

@@ -1,6 +1,6 @@
-package org.woozi.pratice.jakarta.persistence.entity.strategy;
+package org.woozi.pratice.jakarta.persistence.query.dialect.strategy.type;
 
-import org.woozi.pratice.jakarta.persistence.entity.EntityColumn;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
 
 public class EntityColumnTypeStringDialectStrategy implements EntityColumnTypeDialectStrategy {
     private static final Class<?> JAVA_TYPE = String.class;

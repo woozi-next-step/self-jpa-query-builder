@@ -1,5 +1,7 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
+import org.woozi.pratice.jakarta.persistence.entity.annotation.Table;
+
 public class EntityName {
 
     private final String name;

@@ -1,5 +1,8 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.Transient;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;

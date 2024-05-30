@@ -1,5 +1,8 @@
 package org.woozi.pratice.jakarta.persistence.entity;
 
+import org.woozi.pratice.jakarta.persistence.entity.annotation.Entity;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.EntityColumn;
+
 public class EntityClass {
 
     private final EntityName name;

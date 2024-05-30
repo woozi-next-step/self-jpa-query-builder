@@ -1,6 +1,7 @@
 package org.woozi.pratice.entity;
 
 import org.woozi.pratice.jakarta.persistence.entity.*;
+import org.woozi.pratice.jakarta.persistence.entity.annotation.*;
 
 import java.util.Objects;
 
