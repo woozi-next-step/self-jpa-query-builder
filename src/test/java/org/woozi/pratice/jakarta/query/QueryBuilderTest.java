@@ -1,8 +1,11 @@
-package org.woozi.pratice.entity;
+package org.woozi.pratice.jakarta.query;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.woozi.pratice.entity.PersonV1;
+import org.woozi.pratice.entity.PersonV2;
+import org.woozi.pratice.entity.PersonV3;
 import org.woozi.pratice.jakarta.persistence.entity.GenerationType;
 import org.woozi.pratice.jakarta.persistence.entity.annotation.*;
 import org.woozi.pratice.jakarta.persistence.query.dialect.H2Dialect;
@@ -48,6 +51,17 @@ class QueryBuilderTest {
             final String actual = queryBuilder.execute(PersonV3.class, QueryFactory.CREATE.type());
 
             final String expected = "CREATE TABLE `users` (`id` BIGINT NOT NULL AUTO_INCREMENT, `nick_name` VARCHAR(255) NULL, `old` INT NULL, `email` VARCHAR(255) NOT NULL, PRIMARY KEY(`id`));";
+
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @DisplayName("Entity 어노테이션 선언 클래스 drop 쿼리를 생성한다")
+        @Test
+        void Entity_어노테이션_선언_클래스_drop_쿼리를_생성한다() {
+            final QueryBuilder queryBuilder = new QueryBuilder(new H2Dialect());
+            final String actual = queryBuilder.execute(PersonV3.class, QueryFactory.DROP.type());
+
+            final String expected = "DROP TABLE `users`;";
 
             assertThat(actual).isEqualTo(expected);
         }
