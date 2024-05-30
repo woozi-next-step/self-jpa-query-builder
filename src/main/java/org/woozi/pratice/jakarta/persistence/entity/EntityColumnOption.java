@@ -55,6 +55,6 @@ public class EntityColumnOption {
     }
 
     public boolean isAutoIncrement() {
-        return generationType.equals(GenerationType.IDENTITY);
+        return generationType.equals(GenerationType.IDENTITY) || generationType.equals(GenerationType.AUTO);
     }
 }

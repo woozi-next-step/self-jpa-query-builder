@@ -1,13 +1,12 @@
 package org.woozi.pratice.entity;
 
-import org.woozi.pratice.jakarta.persistence.entity.*;
+import org.woozi.pratice.jakarta.persistence.entity.GenerationType;
 import org.woozi.pratice.jakarta.persistence.entity.annotation.*;
 
 import java.util.Objects;
 
-@Table(name = "persons")
 @Entity
-public class Person {
+public class PersonV2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,16 +21,14 @@ public class Person {
     @Column(nullable = false)
     private String email;
 
-    @Transient
-    private Integer index;
-
-    public Person() {
+    public PersonV2() {
     }
 
-    public Person(final Long id, final String name, final Integer age) {
+    public PersonV2(final Long id, final String name, final Integer age, final String email) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.email = email;
     }
 
     public Long getId() {
@@ -50,16 +47,12 @@ public class Person {
         return email;
     }
 
-    public Integer getIndex() {
-        return index;
-    }
-
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final Person person = (Person) o;
-        return Objects.equals(id, person.id);
+        final PersonV2 personV3 = (PersonV2) o;
+        return Objects.equals(id, personV3.id);
     }
 
     @Override
