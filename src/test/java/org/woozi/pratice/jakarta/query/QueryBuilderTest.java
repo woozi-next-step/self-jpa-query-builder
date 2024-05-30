@@ -59,6 +59,17 @@ class QueryBuilderTest {
         @Test
         void Entity_어노테이션_선언_클래스_drop_쿼리를_생성한다() {
             final QueryBuilder queryBuilder = new QueryBuilder(new H2Dialect());
+            final String actual = queryBuilder.execute(PersonV2.class, QueryFactory.DROP.type());
+
+            final String expected = "DROP TABLE `personv2`;";
+
+            assertThat(actual).isEqualTo(expected);
+        }
+
+        @DisplayName("Entity 어노테이션 선언 클래스에 Table 어노테이션 name 기준으로 drop 쿼리를 생성한다")
+        @Test
+        void Entity_어노테이션_선언_클래스에_Table_어노테이션_name_기준으로_drop_쿼리를_생성한다() {
+            final QueryBuilder queryBuilder = new QueryBuilder(new H2Dialect());
             final String actual = queryBuilder.execute(PersonV3.class, QueryFactory.DROP.type());
 
             final String expected = "DROP TABLE `users`;";
